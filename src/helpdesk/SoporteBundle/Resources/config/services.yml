@@ -1,0 +1,4 @@
+services:
+#    helpdesk_soporte.example:
+#        class: helpdesk\SoporteBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

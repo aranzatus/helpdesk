@@ -1,3 +1,7 @@
+helpdesk_soporte:
+    resource: "@helpdeskSoporteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

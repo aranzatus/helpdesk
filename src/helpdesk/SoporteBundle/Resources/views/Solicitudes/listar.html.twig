@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+ 
+{% block body %}
+    Este es un listar
+    <table class="table table-striped">
+        <tr>
+            <th>Codigo</th>
+            <th>Asunto</th>
+        </tr>
+        
+            {%for arSolicitudes in arSolicitudes %}
+               <tr>
+                <td>{{arSolicitudes.codigoSolicitudPk}}</td>
+                <td>{{arSolicitudes.asunto}}</td>
+              </tr> 
+            {%endfor%}    
+       
+        
+    </table>
+{% endblock %}

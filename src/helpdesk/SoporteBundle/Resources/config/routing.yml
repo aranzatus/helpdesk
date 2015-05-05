@@ -1,3 +1,11 @@
 helpdesk_soporte_homepage:
     path:     /helloo/{name}
     defaults: { _controller: helpdeskSoporteBundle:Default:index }
+    
+helpdesk_inicio_soporte:
+    path:     /inicio
+    defaults: { _controller: helpdeskSoporteBundle:Inicio:inicio }    
+
+helpdesk_solicitudes_listar:
+    path:     /solicitudes/listar
+    defaults: { _controller: helpdeskSoporteBundle:Solicitudes:listar }

@@ -27,7 +27,7 @@ class SopSolicitud
     protected $asunto;
  
     /**
-     * @ORM\Column(type="text", name="descripcion")
+     * @ORM\Column(type="text", name="descripcion", nullable=true)
      */
     protected $descripcion;
     
@@ -37,9 +37,10 @@ class SopSolicitud
     protected $fecha;
     
     /**
-     * @ORM\Column(type="date", name="fecha_solucion")
+     * @ORM\Column(type="date", name="fecha_solucion", nullable=true)
      */
     protected $fechaSolucion;
+ 
 
     /**
      * Get codigoSolicitudPk

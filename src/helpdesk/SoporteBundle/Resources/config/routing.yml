@@ -1,11 +1,24 @@
-helpdesk_soporte_homepage:
-    path:     /helloo/{name}
-    defaults: { _controller: helpdeskSoporteBundle:Default:index }
     
 helpdesk_inicio_soporte:
-    path:     /inicio
+    path:     /
     defaults: { _controller: helpdeskSoporteBundle:Inicio:inicio }    
 
 helpdesk_solicitudes_listar:
     path:     /solicitudes/listar
     defaults: { _controller: helpdeskSoporteBundle:Solicitudes:listar }
+    
+helpdesk_solicitudes_nuevo:
+    path:     /solicitudes/nuevo
+    defaults: { _controller: helpdeskSoporteBundle:Solicitudes:nuevo }
+    
+helpdesk_solicitudes_editar:
+    path:     /solicitudes/editar/{codigoSolicitudPk}
+    defaults: { _controller: helpdeskSoporteBundle:Solicitudes:editar }
+    
+helpdesk_solicitudes_eliminar:
+    path:     /solicitudes/eliminar/{codigoSolicitudPk}
+    defaults: { _controller: helpdeskSoporteBundle:Solicitudes:eliminar }
+    
+helpdesk_solicitudes_solucion:
+    path:     /solicitudes/solucion/{codigoSolicitudPk}
+    defaults: { _controller: helpdeskSoporteBundle:Solicitudes:solucion }    

@@ -1,20 +1,36 @@
 {% extends '::base.html.twig' %}
  
 {% block body %}
-    Este es un listar
-    <table class="table table-striped">
+    <div class="pa">
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+    {{ form_errors(form) }} 
+    <table class="table table-bordered">
         <tr>
             <th>Codigo</th>
             <th>Asunto</th>
+            <th>Descripcion</th>
+            <th>Fecha Solicitud</th>
+            <th>Fecha Solución</th>
+       
         </tr>
         
             {%for arSolicitudes in arSolicitudes %}
                <tr>
-                <td>{{arSolicitudes.codigoSolicitudPk}}</td>
+                <td><a href="{{ path('helpdesk_solicitudes_solucion',{'codigoSolicitudPk': arSolicitudes.codigoSolicitudPk})}}">{{arSolicitudes.codigoSolicitudPk}}</a></td>
                 <td>{{arSolicitudes.asunto}}</td>
-              </tr> 
-            {%endfor%}    
-       
+                <td>{{arSolicitudes.descripcion}}</td>
+                <td>{{arSolicitudes.fecha|date("Y/m/d")}}</td>
+                <td>{{arSolicitudes.fechaSolucion|date("Y/m/d")}}</td>
+                <td><a href="{{ path('helpdesk_solicitudes_editar',{'codigoSolicitudPk': arSolicitudes.codigoSolicitudPk})}}">Editar</a></td>
+                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arSolicitudes.codigoSolicitudPk }}" /></td>
+            {%endfor%}      
+            <div>                
+                {{ form_widget(form.BtnEliminar, { 'attr': {'class': 'btn btn-danger btn-sm'} }) }} 
+                              
+            </div>
         
     </table>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </div>
 {% endblock %}

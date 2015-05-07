@@ -7,20 +7,22 @@
     <table class="table table-bordered">
         <tr>
             <th>Codigo</th>
+            <th>Usuario</th>
             <th>Asunto</th>
             <th>Descripcion</th>
             <th>Fecha Solicitud</th>
-            <th>Fecha Solución</th>
+            
        
         </tr>
         
             {%for arSolicitudes in arSolicitudes %}
                <tr>
                 <td><a href="{{ path('helpdesk_solicitudes_solucion',{'codigoSolicitudPk': arSolicitudes.codigoSolicitudPk})}}">{{arSolicitudes.codigoSolicitudPk}}</a></td>
+                <td>{{arSolicitudes.codigoUsuarioFk}}</td>
                 <td>{{arSolicitudes.asunto}}</td>
                 <td>{{arSolicitudes.descripcion}}</td>
                 <td>{{arSolicitudes.fecha|date("Y/m/d")}}</td>
-                <td>{{arSolicitudes.fechaSolucion|date("Y/m/d")}}</td>
+                
                 <td><a href="{{ path('helpdesk_solicitudes_editar',{'codigoSolicitudPk': arSolicitudes.codigoSolicitudPk})}}">Editar</a></td>
                 <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arSolicitudes.codigoSolicitudPk }}" /></td>
             {%endfor%}      

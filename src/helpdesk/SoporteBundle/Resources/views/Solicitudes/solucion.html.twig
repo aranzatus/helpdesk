@@ -1,8 +1,53 @@
-{% extends '::base.html.twig' %}
 
+
+{% extends '::base.html.twig' %}
+ 
 {% block body %}
     <div class="pa">
-    {{ form(formSolucion) }}
-    {{ form(form) }}
+   
+   
+    
+      
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+    {{ form_errors(form) }} 
+    <table class="table table-bordered">
+        <tr>
+            <th>Código</th>
+            <td>{{ arSolucion.codigoSolicitudPk}}</td>
+        </tr>
+        <tr>
+            <th>Usuario</th>
+            <td>{{ arSolucion.codigoUsuarioFk}}</td>
+        </tr>
+        <tr>
+            <th>Asunto</th>
+            <td>{{ arSolucion.asunto }}</td>
+        </tr>
+        <tr>
+            <th>Descripción</th>
+            <td>{{ arSolucion.descripcion }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Solicitud</th>
+            <td>{{arSolucion.fecha|date("Y/m/d")}}</td>
+        </tr>
+        <tr>
+            <th>Observaciones</th>
+            <td>{{ form_widget(form.TxtSolucion) }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Solucion</th>
+            <td>{{ form_widget(form.fechaSolucion) }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ form_widget(form.estado) }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ form_widget(form.save, { 'attr': {'class': 'btn btn-danger btn-sm'}}) }}</td>
+        </tr>
+    </table>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
     </div>
 {% endblock %}

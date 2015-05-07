@@ -2,7 +2,32 @@
 
 {% block body %}
     <div class="pa">
-    {{ form(formSolicitud) }}
-    
+        {{ form_start(formSolicitud, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(formSolicitud) }}
+    <table class="table table-bordered">
+        
+        <tr>
+            <th>Usuario</th>
+            <td>{{ form_widget(formSolicitud.codigoUsuarioFk, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Asunto</th>
+            <td>{{ form_widget(formSolicitud.asunto, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Descripción</th>
+            <td>{{ form_widget(formSolicitud.descripcion, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Solicitud</th>
+            <td>{{ form_widget(formSolicitud.fecha, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            
+            <td colspan="2">{{ form_widget(formSolicitud.save, { 'attr': {'class': 'btn btn-danger btn-sm'}}) }}</td>
+        </tr>
+    </table>
+        {{ form_rest(formSolicitud) }}
+    {{ form_end(formSolicitud) }}
     </div>
 {% endblock %}

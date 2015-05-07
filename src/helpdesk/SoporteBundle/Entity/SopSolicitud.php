@@ -43,6 +43,17 @@ class SopSolicitud
  
 
     /**
+     * @ORM\Column(type="text", name="observaciones", nullable=true)
+     */
+    protected $observaciones;
+    
+    /**
+     * @ORM\Column(type="string", length=100, name="estado", options={"unsigned":true, "default":"Activo"})
+     */
+    protected $estado;
+    
+    
+    /**
      * Get codigoSolicitudPk
      *
      * @return integer 
@@ -165,5 +176,51 @@ class SopSolicitud
     public function getFechaSolucion()
     {
         return $this->fechaSolucion;
+    }
+
+    /**
+     * Set observaciones
+     *
+     * @param string $observaciones
+     * @return SopSolicitud
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    /**
+     * Get observaciones
+     *
+     * @return string 
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return SopSolicitud
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

@@ -75,25 +75,28 @@ class SolicitudesController extends Controller {
         $request = $this->getRequest();
         $arSolucion = new \helpdesk\SoporteBundle\Entity\SopSolicitud();
         $arSolucion = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->find($codigoSolicitudPk);
-        
+        $fe = new \DateTime('now');
         $form = $this->createFormBuilder()
-            ->add('TxtSolucion', 'text', array('label'  => 'Observaciones'))
-            ->add('fechaSolucion', 'date', array('label'  => 'Fecha Solución'))
+            ->add('TxtSolucion', 'textarea', array('label'  => 'Observaciones'))
+            ->add('fechaSolucion','date', array('label' => 'hola'))
+            ->add('estado', 'choice', array('choices' => array('Activo' => 'Activo','Cerrado'=>'Cerrado')))
+            ->add('save', 'submit', array('label' => 'Guardar'))    
             ->getForm();
         $form->handleRequest($request);
         
-        $formSolucion = $this->createForm(new SolicitudType(), $arSolucion);
-        $formSolucion->handleRequest($request);
+        
         if ($form->isValid()) {
             // guardar la tarea en la base de datos
-            $em->persist($form);
-            $form = $form->getData();
+            $arSolucion->setObservaciones($form->get('TxtSolucion')->getData());
+            $arSolucion->setfechaSolucion($form->get('fechaSolucion')->getData());
+            $arSolucion->setestado($form->get('estado')->getData());
+            $em->persist($arSolucion);
             $em->flush();
             return $this->redirect($this->generateUrl('helpdesk_solicitudes_listar'));
         }
         return $this->render('helpdeskSoporteBundle:Solicitudes:solucion.html.twig', array(
-            'formSolucion' => $formSolucion->createView(),
-            'form'=> $form->createView()
+            'form'=> $form->createView(), 
+            'arSolucion'=> $arSolucion
         ));
     }
     

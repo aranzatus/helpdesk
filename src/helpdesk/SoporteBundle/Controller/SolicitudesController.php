@@ -77,26 +77,37 @@ class SolicitudesController extends Controller {
         $arSolucion = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->find($codigoSolicitudPk);
         $fe = new \DateTime('now');
         $form = $this->createFormBuilder()
-            ->add('TxtSolucion', 'textarea', array('label'  => 'Observaciones'))
-            ->add('fechaSolucion','date', array('label' => 'hola'))
+            ->add('TxtSolucion', 'textarea', array('data' => $arSolucion->getObservaciones()))
+            ->add('fechaSolucion','date',array('data' => $arSolucion->getFechaSolucion()))
             ->add('estado', 'choice', array('choices' => array('Activo' => 'Activo','Cerrado'=>'Cerrado')))
             ->add('save', 'submit', array('label' => 'Guardar'))    
             ->getForm();
         $form->handleRequest($request);
         
         
-        if ($form->isValid()) {
-            // guardar la tarea en la base de datos
-            $arSolucion->setObservaciones($form->get('TxtSolucion')->getData());
-            $arSolucion->setfechaSolucion($form->get('fechaSolucion')->getData());
-            $arSolucion->setestado($form->get('estado')->getData());
-            $em->persist($arSolucion);
-            $em->flush();
-            return $this->redirect($this->generateUrl('helpdesk_solicitudes_listar'));
+        if ($form->isValid())
+        {
+            // guardar la tarea en la base de datos           
+            if ($form->get('TxtSolucion') == "")
+            {
+                echo $mensaje= "No";
+            }
+            else
+            {
+              $arSolucion->setObservaciones($form->get('TxtSolucion')->getData());
+              $arSolucion->setfechaSolucion($form->get('fechaSolucion')->getData());
+              $arSolucion->setestado($form->get('estado')->getData());
+              $em->persist($arSolucion);
+              $em->flush();
+              return $this->redirect($this->generateUrl('helpdesk_solicitudes_listar'));  
+            }    
+            
+                        
         }
         return $this->render('helpdeskSoporteBundle:Solicitudes:solucion.html.twig', array(
             'form'=> $form->createView(), 
-            'arSolucion'=> $arSolucion
+            'arSolucion'=> $arSolucion,
+            
         ));
     }
     

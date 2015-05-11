@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="pa">
+        {{ form_start(formUsuario, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(formUsuario) }}
+    <table class="table table-bordered">
+        
+        <tr>
+            <th>Usuario</th>
+            <td>{{ form_widget(formUsuario.usuario, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{ form_widget(formUsuario.password, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ form_widget(formUsuario.nombre, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            <th>Fecha Creación</th>
+            <td>{{ form_widget(formUsuario.fechac, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            
+            <td colspan="2">{{ form_widget(formUsuario.save, { 'attr': {'class': 'btn btn-success btn-sm'}}) }}
+                <input type="button" value="Volver" onClick=" window.location.href='{{ path('helpdesk_usuarios_listar')}}' " class="btn btn-info btn-sm"></td>
+        </tr>
+    </table>
+        {{ form_rest(formUsuario) }}
+    {{ form_end(formUsuario) }}
+    </div>
+{% endblock %}

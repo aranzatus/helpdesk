@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="pa">
+        {{ form_start(formSolicitudTipo, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(formSolicitudTipo) }}
+    <table class="table table-bordered">
+        
+        <tr>
+            <th>Tipo Solicitud</th>
+            <td>{{ form_widget(formSolicitudTipo.solicitudTipo, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+        </tr>
+        <tr>
+            
+            <td colspan="2">{{ form_widget(formSolicitudTipo.save, { 'attr': {'class': 'btn btn-success btn-sm'}}) }}
+                <input type="button" value="Volver" onClick=" window.location.href='{{ path('helpdesk_solicitudestipos_listar')}}' " class="btn btn-info btn-sm"></td>
+        </tr>
+    </table>
+        {{ form_rest(formSolicitudTipo) }}
+    {{ form_end(formSolicitudTipo) }}
+    </div>
+{% endblock %}
+

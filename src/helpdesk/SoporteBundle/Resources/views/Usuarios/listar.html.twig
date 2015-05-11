@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+ 
+{% block body %}
+    <div class="pa">
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(form) }} 
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>Password</th>
+            <th>Nombre</th>
+            <th>Fecha Creación</th>
+            
+       
+        </tr>
+        
+            {%for arUsuarios in arUsuarios %}
+               <tr>
+                <td>{{arUsuarios.idUsuarioPk}}</td>
+                <td>{{arUsuarios.usuario}}</td>
+                <td>{{arUsuarios.password}}</td>
+                <td>{{arUsuarios.nombre}}</td>
+                <td>{{arUsuarios.fechac|date("Y/m/d")}}</td>
+                
+                <td><a href="{{ path('helpdesk_usuarios_editar',{'idUsuarioPk': arUsuarios.idUsuarioPk})}}">Editar</a></td>
+                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arUsuarios.idUsuarioPk }}" /></td>
+            {%endfor%}
+            </tr>
+            <tr>          
+                <td colspan="7" align="right">{{ form_widget(form.BtnEliminar, { 'attr': {'class': 'btn btn-danger btn-sm'} }) }}</td> 
+            </tr>    
+        
+    </table>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

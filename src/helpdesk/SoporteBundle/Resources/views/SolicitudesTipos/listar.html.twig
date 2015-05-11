@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+ 
+{% block body %}
+    <div class="pa">
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+    {{ form_errors(form) }} 
+    <table class="table table-bordered">
+        <tr>
+            <th>Codigo</th>
+            <th>Tipo Solicitud</th>
+       
+        </tr>
+        
+            {%for arSolicitudesTipos in arSolicitudesTipos %}
+               <tr>
+                <td>{{arSolicitudesTipos.codigoTipoSolicitudPk}}</td>
+                <td>{{arSolicitudesTipos.solicitudTipo}}</td>
+                
+                <td><a href="{{ path('helpdesk_solicitudestipos_editar',{'codigoTipoSolicitudPk': arSolicitudesTipos.codigoTipoSolicitudPk})}}">Editar</a></td>
+                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arSolicitudesTipos.codigoTipoSolicitudPk }}" /></td>
+            {%endfor%}
+            </tr>
+            <tr>          
+                <td colspan="7" align="right">{{ form_widget(form.BtnEliminar, { 'attr': {'class': 'btn btn-danger btn-sm'} }) }}</td> 
+            </tr>    
+        
+    </table>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
+

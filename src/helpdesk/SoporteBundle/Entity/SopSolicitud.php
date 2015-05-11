@@ -22,9 +22,9 @@ class SopSolicitud
     protected $codigoUsuarioFk;
  
     /**
-     * @ORM\Column(type="string", length=100, name="asunto")
+     * @ORM\Column(type="integer", name="codigo_tipo_solicitud_fk")
      */
-    protected $asunto;
+    protected $codigoTipoSolicitudFk;
  
     /**
      * @ORM\Column(type="text", name="descripcion", nullable=true)
@@ -53,6 +53,7 @@ class SopSolicitud
     protected $estado;
     
     
+
     /**
      * Get codigoSolicitudPk
      *
@@ -87,26 +88,26 @@ class SopSolicitud
     }
 
     /**
-     * Set asunto
+     * Set codigoTipoSolicitudFk
      *
-     * @param string $asunto
+     * @param integer $codigoTipoSolicitudFk
      * @return SopSolicitud
      */
-    public function setAsunto($asunto)
+    public function setCodigoTipoSolicitudFk($codigoTipoSolicitudFk)
     {
-        $this->asunto = $asunto;
+        $this->codigoTipoSolicitudFk = $codigoTipoSolicitudFk;
 
         return $this;
     }
 
     /**
-     * Get asunto
+     * Get codigoTipoSolicitudFk
      *
-     * @return string 
+     * @return integer 
      */
-    public function getAsunto()
+    public function getCodigoTipoSolicitudFk()
     {
-        return $this->asunto;
+        return $this->codigoTipoSolicitudFk;
     }
 
     /**

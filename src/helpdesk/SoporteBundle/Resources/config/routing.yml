@@ -1,4 +1,4 @@
-    
+# Submenu Solicitudes #    
 helpdesk_inicio_soporte:
     path:     /
     defaults: { _controller: helpdeskSoporteBundle:Inicio:inicio }    
@@ -22,3 +22,29 @@ helpdesk_solicitudes_eliminar:
 helpdesk_solicitudes_solucion:
     path:     /solicitudes/solucion/{codigoSolicitudPk}
     defaults: { _controller: helpdeskSoporteBundle:Solicitudes:solucion }    
+    
+# Submenu Usuarios#
+helpdesk_usuarios_listar:
+    path:     /usuarios/listar
+    defaults: { _controller: helpdeskSoporteBundle:Usuarios:listar }
+    
+helpdesk_usuarios_nuevo:
+    path:     /usuarios/nuevo
+    defaults: { _controller: helpdeskSoporteBundle:Usuarios:nuevo }   
+    
+helpdesk_usuarios_editar:
+    path:     /usuarios/editar{idUsuarioPk}
+    defaults: { _controller: helpdeskSoporteBundle:Usuarios:editar }    
+
+# Submenu Tipo Solicitud#
+helpdesk_solicitudestipos_listar:
+    path:     /solicitudestipos/listar
+    defaults: { _controller: helpdeskSoporteBundle:SolicitudesTipos:listar }
+    
+helpdesk_solicitudestipos_nuevo:
+    path:     /solicitudestipos/nuevo
+    defaults: { _controller: helpdeskSoporteBundle:SolicitudesTipos:nuevo }   
+    
+helpdesk_solicitudestipos_editar:
+    path:     /solicitudestipos/editar{codigoTipoSolicitudPk}
+    defaults: { _controller: helpdeskSoporteBundle:SolicitudesTipos:editar } 

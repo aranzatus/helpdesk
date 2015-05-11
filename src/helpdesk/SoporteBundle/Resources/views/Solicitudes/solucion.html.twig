@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <th>Asunto</th>
-            <td>{{ arSolucion.asunto }}</td>
+            <td>{{ arSolucion.codigoTipoSolicitudFk }}</td>
         </tr>
         <tr>
             <th>Descripción</th>
@@ -44,7 +44,8 @@
             <td>{{ form_widget(form.estado) }}</td>
         </tr>
         <tr>
-            <td colspan="2">{{ form_widget(form.save, { 'attr': {'class': 'btn btn-success btn-sm'}}) }}</td>
+            <td colspan="2">{{ form_widget(form.save, { 'attr': {'class': 'btn btn-success btn-sm'}}) }}
+                <input type="button" value="Volver" onClick=" window.location.href='{{ path('helpdesk_solicitudes_listar')}}' " class="btn btn-info btn-sm"></td>
         </tr>
     </table>
             

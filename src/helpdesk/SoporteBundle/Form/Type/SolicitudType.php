@@ -9,11 +9,10 @@ class SolicitudType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            
-            ->add('codigoUsuarioFk','text')
-            ->add('codigoTipoSolicitudFk','text')
-            ->add('descripcion','textarea', array('required' => false))
-            ->add('fecha','date')
+            ->add('solitudTipoRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopSolicitudTipo','property' => 'solicitudTipo'))
+            ->add('usuarioRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopUsuario','property' => 'nombre'))
+            ->add('descripcion','textarea', array('required' => true))
+            ->add('fecha','date',array('data' => new \ DateTime('now')))
             ->add('observaciones','hidden')
             ->add('estado','hidden',array('data'  => 'Activo'))   
             ->add('save', 'submit', array('label'  => 'Guardar'));

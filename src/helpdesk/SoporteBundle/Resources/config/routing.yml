@@ -33,7 +33,7 @@ helpdesk_usuarios_nuevo:
     defaults: { _controller: helpdeskSoporteBundle:Usuarios:nuevo }   
     
 helpdesk_usuarios_editar:
-    path:     /usuarios/editar{idUsuarioPk}
+    path:     /usuarios/editar{codigoUsuarioPk}
     defaults: { _controller: helpdeskSoporteBundle:Usuarios:editar }    
 
 # Submenu Tipo Solicitud#

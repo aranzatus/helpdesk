@@ -9,10 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SopSolicitud
 {
+    
     /**
-     * @ORM\Id
      * @ORM\Column(type="integer", name="codigo_solicitud_pk")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id 
      */
     protected $codigoSolicitudPk;
  
@@ -27,7 +28,7 @@ class SopSolicitud
     protected $codigoTipoSolicitudFk;
  
     /**
-     * @ORM\Column(type="text", name="descripcion", nullable=true)
+     * @ORM\Column(type="text", name="descripcion")
      */
     protected $descripcion;
     
@@ -52,6 +53,20 @@ class SopSolicitud
      */
     protected $estado;
     
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="SopUsuario", inversedBy="solicitudesUsuarioRel")
+     * @ORM\JoinColumn(name="codigo_usuario_fk", referencedColumnName="codigo_usuario_pk")
+     */
+    
+    protected $usuarioRel;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="SopSolicitudTipo", inversedBy="solictudesSolicitudTipoRel")
+     * @ORM\JoinColumn(name="codigo_tipo_solicitud_fk", referencedColumnName="codigo_solicitud_tipo_pk") 
+     */
+    protected $solitudTipoRel;
+ 
     
 
     /**
@@ -223,5 +238,51 @@ class SopSolicitud
     public function getEstado()
     {
         return $this->estado;
+    }
+
+    /**
+     * Set usuarioRel
+     *
+     * @param \helpdesk\SoporteBundle\Entity\SopUsuario $usuarioRel
+     * @return SopSolicitud
+     */
+    public function setUsuarioRel(\helpdesk\SoporteBundle\Entity\SopUsuario $usuarioRel = null)
+    {
+        $this->usuarioRel = $usuarioRel;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioRel
+     *
+     * @return \helpdesk\SoporteBundle\Entity\SopUsuario 
+     */
+    public function getUsuarioRel()
+    {
+        return $this->usuarioRel;
+    }
+
+    /**
+     * Set solitudTipoRel
+     *
+     * @param \helpdesk\SoporteBundle\Entity\SopSolicitudTipo $solitudTipoRel
+     * @return SopSolicitud
+     */
+    public function setSolitudTipoRel(\helpdesk\SoporteBundle\Entity\SopSolicitudTipo $solitudTipoRel = null)
+    {
+        $this->solitudTipoRel = $solitudTipoRel;
+
+        return $this;
+    }
+
+    /**
+     * Get solitudTipoRel
+     *
+     * @return \helpdesk\SoporteBundle\Entity\SopSolicitudTipo 
+     */
+    public function getSolitudTipoRel()
+    {
+        return $this->solitudTipoRel;
     }
 }

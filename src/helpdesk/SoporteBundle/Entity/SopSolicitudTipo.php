@@ -2,17 +2,17 @@
 namespace helpdesk\SoporteBundle\Entity;
  
 use Doctrine\ORM\Mapping as ORM;
- 
+use Doctrine\Common\Collections\ArrayCollection; 
 /**
  * @ORM\Entity
  * @ORM\Table(name="sop_solicitud_tipo")
  */
 class SopSolicitudTipo
-{
+{ 
     /**
-     * @ORM\Id
      * @ORM\Column(type="integer", name="codigo_solicitud_tipo_pk")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id
      */
     protected $codigoTipoSolicitudPk;
  
@@ -21,15 +21,31 @@ class SopSolicitudTipo
      */
     protected $solicitudTipo;
    
+    
+     /**
+     * @ORM\OneToMany(targetEntity="SopSolicitud", mappedBy="solitudTipoRel")
+     */
+    
+    protected $solicitudesSolicitudTipoRel;
+
+    
+   
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->solicitudesSolicitudTipoRel = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Get codigoSolicitudTipoPk
+     * Get codigoTipoSolicitudPk
      *
      * @return integer 
      */
-    public function getCodigoSolicitudTipoPk()
+    public function getCodigoTipoSolicitudPk()
     {
-        return $this->codigoSolicitudTipoPk;
+        return $this->codigoTipoSolicitudPk;
     }
 
     /**
@@ -56,22 +72,35 @@ class SopSolicitudTipo
     }
 
     /**
-     * Get codigoTipoSolicitudFk
+     * Add solicitudesSolicitudTipoRel
      *
-     * @return integer 
+     * @param \helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesSolicitudTipoRel
+     * @return SopSolicitudTipo
      */
-    public function getCodigoTipoSolicitudFk()
+    public function addSolicitudesSolicitudTipoRel(\helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesSolicitudTipoRel)
     {
-        return $this->codigoTipoSolicitudFk;
+        $this->solicitudesSolicitudTipoRel[] = $solicitudesSolicitudTipoRel;
+
+        return $this;
     }
 
     /**
-     * Get codigoTipoSolicitudPk
+     * Remove solicitudesSolicitudTipoRel
      *
-     * @return integer 
+     * @param \helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesSolicitudTipoRel
      */
-    public function getCodigoTipoSolicitudPk()
+    public function removeSolicitudesSolicitudTipoRel(\helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesSolicitudTipoRel)
     {
-        return $this->codigoTipoSolicitudPk;
+        $this->solicitudesSolicitudTipoRel->removeElement($solicitudesSolicitudTipoRel);
+    }
+
+    /**
+     * Get solicitudesSolicitudTipoRel
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSolicitudesSolicitudTipoRel()
+    {
+        return $this->solicitudesSolicitudTipoRel;
     }
 }

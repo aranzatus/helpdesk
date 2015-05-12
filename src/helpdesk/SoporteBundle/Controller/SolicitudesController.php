@@ -8,10 +8,10 @@ class SolicitudesController extends Controller {
 
     public function listarAction() {
         $em = $this->getDoctrine()->getManager();
-        $request = $this->getRequest();
-        $form = $this->createFormBuilder()
-            ->add('BtnEliminar', 'submit', array('label'  => 'Eliminar',))
-            ->getForm();
+        $request = $this->getRequest(); // captura o recupera datos del formulario
+        $form = $this->createFormBuilder() //
+            ->add('BtnEliminar', 'submit', array('label'  => 'Eliminar'))
+            ->getForm(); 
         $form->handleRequest($request);
         if($form->isValid()) {
             $arrSeleccionados = $request->request->get('ChkSeleccionar');
@@ -56,7 +56,16 @@ class SolicitudesController extends Controller {
         $request = $this->getRequest();
         $arSolicitud = new \helpdesk\SoporteBundle\Entity\SopSolicitud();
         $arSolicitud = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->find($codigoSolicitudPk);
-        $formSolicitud = $this->createForm(new SolicitudType(), $arSolicitud);
+        //$formSolicitud = $this->createForm(new SolicitudType(), $formSolicitud);
+        $formSolicitud = $this->createFormBuilder($arSolicitud)        
+            ->add('solitudTipoRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopSolicitudTipo','property' => 'solicitudTipo'))
+            ->add('usuarioRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopUsuario','property' => 'nombre'))
+            ->add('descripcion','textarea', array('required' => false))
+            ->add('fecha','date')
+            ->add('observaciones','hidden')
+            ->add('estado','hidden',array('data'  => 'Activo'))   
+            ->add('save', 'submit', array('label'  => 'Guardar'))
+            ->getForm();
         $formSolicitud->handleRequest($request);
         if ($formSolicitud->isValid()) {
             // guardar la tarea en la base de datos

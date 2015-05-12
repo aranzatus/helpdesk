@@ -17,14 +17,14 @@
         
             {%for arUsuarios in arUsuarios %}
                <tr>
-                <td>{{arUsuarios.idUsuarioPk}}</td>
+                <td>{{arUsuarios.codigoUsuarioPk}}</td>
                 <td>{{arUsuarios.usuario}}</td>
                 <td>{{arUsuarios.password}}</td>
                 <td>{{arUsuarios.nombre}}</td>
                 <td>{{arUsuarios.fechac|date("Y/m/d")}}</td>
                 
-                <td><a href="{{ path('helpdesk_usuarios_editar',{'idUsuarioPk': arUsuarios.idUsuarioPk})}}">Editar</a></td>
-                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arUsuarios.idUsuarioPk }}" /></td>
+                <td><a href="{{ path('helpdesk_usuarios_editar',{'codigoUsuarioPk': arUsuarios.codigoUsuarioPk})}}">Editar</a></td>
+                <td><input type="checkbox" name="ChkSeleccionar[]" value="{{ arUsuarios.codigoUsuarioPk }}" /></td>
             {%endfor%}
             </tr>
             <tr>          

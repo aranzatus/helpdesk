@@ -2,20 +2,22 @@
 namespace helpdesk\SoporteBundle\Entity;
  
 use Doctrine\ORM\Mapping as ORM;
- 
+use Doctrine\Common\Collections\ArrayCollection; 
 /**
  * @ORM\Entity
  * @ORM\Table(name="sop_usuario")
  */
 class SopUsuario
 {
+   
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer", name="id_usuariopk")
+     *
+     * @ORM\Column(type="integer", name="codigo_usuario_pk")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id
      */
-    protected $idUsuarioPk;
- 
+    protected $codigoUsuarioPk;
+    
     /**
      * @ORM\Column(type="integer", name="usuario", unique=true)
      */
@@ -36,14 +38,31 @@ class SopUsuario
      */
     protected $fechac;
 
+    
     /**
-     * Get idUsuarioPk
+     * @ORM\OneToMany(targetEntity="SopSolicitud", mappedBy="usuarioRel")
+     */
+    
+    protected $solicitudesUsuarioRel;
+    
+  
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->solicitudesUsuarioRel = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get codigoUsuarioPk
      *
      * @return integer 
      */
-    public function getIdUsuarioPk()
+    public function getCodigoUsuarioPk()
     {
-        return $this->idUsuarioPk;
+        return $this->codigoUsuarioPk;
     }
 
     /**
@@ -136,5 +155,38 @@ class SopUsuario
     public function getFechac()
     {
         return $this->fechac;
+    }
+
+    /**
+     * Add solicitudesUsuarioRel
+     *
+     * @param \helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesUsuarioRel
+     * @return SopUsuario
+     */
+    public function addSolicitudesUsuarioRel(\helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesUsuarioRel)
+    {
+        $this->solicitudesUsuarioRel[] = $solicitudesUsuarioRel;
+
+        return $this;
+    }
+
+    /**
+     * Remove solicitudesUsuarioRel
+     *
+     * @param \helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesUsuarioRel
+     */
+    public function removeSolicitudesUsuarioRel(\helpdesk\SoporteBundle\Entity\SopSolicitud $solicitudesUsuarioRel)
+    {
+        $this->solicitudesUsuarioRel->removeElement($solicitudesUsuarioRel);
+    }
+
+    /**
+     * Get solicitudesUsuarioRel
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSolicitudesUsuarioRel()
+    {
+        return $this->solicitudesUsuarioRel;
     }
 }

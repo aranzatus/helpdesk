@@ -8,7 +8,7 @@
    
     
       
-    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
     {{ form_errors(form) }} 
     <table class="table table-bordered">
         <tr>
@@ -17,11 +17,11 @@
         </tr>
         <tr>
             <th>Usuario</th>
-            <td>{{ arSolucion.codigoUsuarioFk}}</td>
+            <td>{{ arSolucion.usuarioRel.nombre}}</td>
         </tr>
         <tr>
             <th>Asunto</th>
-            <td>{{ arSolucion.codigoTipoSolicitudFk }}</td>
+            <td>{{ arSolucion.solitudTipoRel.solicitudTipo }}</td>
         </tr>
         <tr>
             <th>Descripción</th>

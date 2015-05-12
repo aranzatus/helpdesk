@@ -60,7 +60,7 @@ public function editarAction($codigoTipoSolicitudPk) {
         $request = $this->getRequest();
         $arSolicitudTipo = new \helpdesk\SoporteBundle\Entity\SopSolicitudTipo();
         $arSolicitudTipo = $em->getRepository('helpdeskSoporteBundle:SopSolicitudTipo')->find($codigoTipoSolicitudPk);
-        $formSolicitudTipo = $this->createForm(new SolicitudTipoType(), $arSolicitudTipo);
+        //$formSolicitudTipo = $this->createForm(new SolicitudTipoType(), $arSolicitudTipo);
         $formSolicitudTipo->handleRequest($request);
         if ($formSolicitudTipo->isValid()) {
             // guardar la tarea en la base de datos

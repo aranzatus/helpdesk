@@ -11,15 +11,13 @@
             <th>Asunto</th>
             <th>Descripcion</th>
             <th>Fecha Solicitud</th>
-            
-       
         </tr>
         
             {%for arSolicitudes in arSolicitudes %}
                <tr>
                 <td><a href="{{ path('helpdesk_solicitudes_solucion',{'codigoSolicitudPk': arSolicitudes.codigoSolicitudPk})}}">{{arSolicitudes.codigoSolicitudPk}}</a></td>
-                <td>{{arSolicitudes.codigoUsuarioFk}}</td>
-                <td>{{arSolicitudes.codigoTipoSolicitudFk}}</td>
+                <td>{{arSolicitudes.usuarioRel.nombre}}</td>
+                <td>{{arSolicitudes.solitudTipoRel.solicitudTipo}}</td>
                 <td>{{arSolicitudes.descripcion}}</td>
                 <td>{{arSolicitudes.fecha|date("Y/m/d")}}</td>
                 

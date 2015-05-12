@@ -13,7 +13,7 @@ class UsuarioType extends AbstractType
             ->add('usuario','text')
             ->add('password','text')
             ->add('nombre','text')
-            ->add('fechac','date')   
+            ->add('fechac','date', array('data' => new \ DateTime('now')))   
             ->add('save', 'submit', array('label'  => 'Guardar'));
        
     }

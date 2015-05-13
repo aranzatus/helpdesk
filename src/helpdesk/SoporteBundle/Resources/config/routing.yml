@@ -1,4 +1,12 @@
 # Submenu Solicitudes #    
+login:
+    pattern:   /login
+    defaults:  { _controller: helpdeskSoporteBundle:Security:login }
+    
+login_check:
+    pattern:   /login_check
+
+
 helpdesk_inicio_soporte:
     path:     /
     defaults: { _controller: helpdeskSoporteBundle:Inicio:inicio }    
@@ -48,3 +56,5 @@ helpdesk_solicitudestipos_nuevo:
 helpdesk_solicitudestipos_editar:
     path:     /solicitudestipos/editar{codigoTipoSolicitudPk}
     defaults: { _controller: helpdeskSoporteBundle:SolicitudesTipos:editar } 
+    
+    

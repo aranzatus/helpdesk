@@ -10,11 +10,12 @@ class UsuarioType extends AbstractType
     {
         $builder
             
-            ->add('usuario','text')
-            ->add('password','text')
-            ->add('nombre','text')
-            ->add('fechac','date', array('data' => new \ DateTime('now')))   
-            ->add('save', 'submit', array('label'  => 'Guardar'));
+        ->add('usuario','text')
+        ->add('password','text')
+        ->add('nombre','text')
+        ->add('email', 'text', array('attr' => array('class' => 'email-box')))
+        ->add('fechac','date', array('data' => new \ DateTime('now')))   
+        ->add('save', 'submit', array('label'  => 'Guardar'));
        
     }
  

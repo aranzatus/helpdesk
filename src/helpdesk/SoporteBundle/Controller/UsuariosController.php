@@ -65,6 +65,7 @@ public function editarAction($codigoUsuarioPk) {
             ->add('usuario','text', array('data' => $arUsuario->getusuario()))
             ->add('password','text', array('data' => $arUsuario->getpassword()))
             ->add('nombre','text', array('data' => $arUsuario->getnombre()))
+            ->add('email','text', array('data' => $arUsuario->getemail()))
             ->add('fechac','date',array('data' => $arUsuario->getfechac()))   
             ->add('save', 'submit', array('label'  => 'Guardar'))
             ->getForm();

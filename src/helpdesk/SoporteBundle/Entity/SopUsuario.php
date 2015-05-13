@@ -1,13 +1,13 @@
 <?php
 namespace helpdesk\SoporteBundle\Entity;
- 
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection; 
 /**
  * @ORM\Entity
  * @ORM\Table(name="sop_usuario")
  */
-class SopUsuario
+class SopUsuario 
 {
    
     /**
@@ -32,6 +32,11 @@ class SopUsuario
      * @ORM\Column(type="string", length=300, name="nombre")
      */
     protected $nombre;
+    
+    /**
+     * @ORM\Column(type="string", length=100, name="email", unique=true)
+     */
+    protected $email;
     
     /**
      * @ORM\Column(type="date", name="fechac")
@@ -132,6 +137,29 @@ class SopUsuario
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return SopUsuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

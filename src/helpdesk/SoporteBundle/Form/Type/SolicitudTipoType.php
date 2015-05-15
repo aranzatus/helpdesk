@@ -10,7 +10,7 @@ class SolicitudTipoType extends AbstractType
     {
         $builder
             
-            ->add('solicitudTipo','text')   
+            ->add('solicitudTipo', 'text', array('attr' => array('style' => 'width: 260px')))
             ->add('save', 'submit', array('label'  => 'Guardar'));
        
     }

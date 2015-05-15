@@ -1,9 +1,9 @@
 <?php
 
 namespace helpdesk\SoporteBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use helpdesk\SoporteBundle\Form\Type\UsuarioType;
 
 class SecurityController extends Controller
 {

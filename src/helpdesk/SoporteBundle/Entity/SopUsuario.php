@@ -2,16 +2,29 @@
 namespace helpdesk\SoporteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection; 
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="sop_usuario")
+ * @UniqueEntity(
+ * fields={"usuario"},
+ * errorPath="usuario",
+ * message="Ya existe el usuario"
+ * )
+ * @UniqueEntity(
+ * fields={"email"},
+ * errorPath="email",
+ * message="Ya existe el Email"
+ * )
  */
 class SopUsuario 
 {
    
     /**
-     *
      * @ORM\Column(type="integer", name="codigo_usuario_pk")
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Id
@@ -20,6 +33,7 @@ class SopUsuario
     
     /**
      * @ORM\Column(type="integer", name="usuario", unique=true)
+     * @Assert\NotBlank()
      */
     protected $usuario;
     
@@ -34,8 +48,13 @@ class SopUsuario
     protected $nombre;
     
     /**
+     * @var string $title
      * @ORM\Column(type="string", length=100, name="email", unique=true)
+     * @Assert\Email(
+     * message = "El mail es incorrecto",
+     * )
      */
+   
     protected $email;
     
     /**

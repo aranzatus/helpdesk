@@ -12,8 +12,8 @@ class UsuarioType extends AbstractType
             
         ->add('usuario','text')
         ->add('password','text')
-        ->add('nombre','text')
-        ->add('email', 'text', array('attr' => array('class' => 'email-box')))
+        ->add('nombre', 'text', array('attr' => array('style' => 'width: 260px')))
+        ->add('email', 'text', array('attr' => array('class' => 'email-box', 'style' => 'width: 260px')))
         ->add('fechac','date', array('data' => new \ DateTime('now')))   
         ->add('save', 'submit', array('label'  => 'Guardar'));
        

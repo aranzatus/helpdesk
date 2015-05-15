@@ -1,3 +1,7 @@
+helpdesk_user:
+    resource: "@helpdeskUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 helpdesk_soporte:
     resource: "@helpdeskSoporteBundle/Resources/config/routing.yml"
     prefix:   /

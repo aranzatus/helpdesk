@@ -6,7 +6,9 @@ login:
 login_check:
     pattern:   /login_check
 
-
+logout:
+    path:   /logout
+    
 helpdesk_inicio_soporte:
     path:     /
     defaults: { _controller: helpdeskSoporteBundle:Inicio:inicio }    

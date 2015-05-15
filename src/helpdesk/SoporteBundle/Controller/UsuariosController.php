@@ -3,12 +3,15 @@
 namespace helpdesk\SoporteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use helpdesk\SoporteBundle\Form\Type\UsuarioType;
 class UsuariosController extends Controller {
 
     public function listarAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest();
+        $paginator  = $this->get('knp_paginator');
         $form = $this->createFormBuilder()
             ->add('BtnEliminar', 'submit', array('label'  => 'Eliminar',))
             ->getForm();
@@ -27,8 +30,9 @@ class UsuariosController extends Controller {
         }
         // Fin Eliminar registros
         $arUsuarios = new \helpdesk\SoporteBundle\Entity\SopUsuario();
-        $arUsuarios = $em->getRepository('helpdeskSoporteBundle:SopUsuario')->findAll();
-        
+        $query = $em->getRepository('helpdeskSoporteBundle:SopUsuario')->findAll();
+        $arUsuarios = $paginator->paginate($query, $this->get('request')->query->get('page', 1),9);
+              
         return $this->render('helpdeskSoporteBundle:Usuarios:listar.html.twig', array(
                     'arUsuarios' => $arUsuarios,
                     'form'=> $form->createView()
@@ -42,6 +46,7 @@ class UsuariosController extends Controller {
         $arUsuario = new \helpdesk\SoporteBundle\Entity\SopUsuario();
         $formUsuario = $this->createForm(new UsuarioType(), $arUsuario);
         $formUsuario->handleRequest($request);
+        
         if ($formUsuario->isValid())
         {
             // guardar la tarea en la base de datos
@@ -50,6 +55,9 @@ class UsuariosController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('helpdesk_usuarios_listar'));
         }
+        
+           
+        
         return $this->render('helpdeskSoporteBundle:Usuarios:nuevo.html.twig', array(
             'formUsuario' => $formUsuario->createView(),
         ));
@@ -64,8 +72,8 @@ public function editarAction($codigoUsuarioPk) {
         $formUsuario = $this->createFormBuilder($arUsuario)        
             ->add('usuario','text', array('data' => $arUsuario->getusuario()))
             ->add('password','text', array('data' => $arUsuario->getpassword()))
-            ->add('nombre','text', array('data' => $arUsuario->getnombre()))
-            ->add('email','text', array('data' => $arUsuario->getemail()))
+            ->add('nombre','text', array('data' => $arUsuario->getnombre(), 'attr' => array('style' => 'width: 260px')))
+            ->add('email','text', array('data' => $arUsuario->getemail(), 'attr' => array('style' => 'width: 260px')))
             ->add('fechac','date',array('data' => $arUsuario->getfechac()))   
             ->add('save', 'submit', array('label'  => 'Guardar'))
             ->getForm();

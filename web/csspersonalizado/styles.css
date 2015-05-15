@@ -3,7 +3,12 @@
 div.pa {
     
    width: 80%;
+   margin: 0 auto; 
+}
+
+div.paa {
+    
+   width: 25%;
    margin: 0 auto;
-    
-    
+   border-radius: 15px;
 }

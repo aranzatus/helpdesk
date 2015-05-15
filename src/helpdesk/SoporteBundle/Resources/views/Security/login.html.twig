@@ -1,19 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+            <title>{% block title %}Acceso{% endblock %}</title>
+            {% block stylesheets %}
+                <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+                <link href="{{ asset('csspersonalizado/styles.css') }}" type="text/css" rel="stylesheet" />
+            {% endblock %}
+                <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block body %} 
+    </head>
+    <form action="{{ path('login_check') }}" method="post" class="form-horizontal">
+        <div class="paa">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid"> 
+            <table align="center">
+                <tr>
+                    <h1 align="center">Helpdesk</h1>
+                </tr>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input type="text" id="username" name="_username" value="{{ last_username }}" class="btn btn-default btn-sm"/></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="_password" class="btn btn-default btn-sm"/></td>
+                </tr>    
+
+                {#
+                    añade lo siguiente si quieres redirigir al usuario a una
+                    URL concreta después del login (explicado más adelante)
+                    <input type="hidden" name="_target_path" value="/account" />
+                #}
+
+                <tr>
+                    <td colspan="2" ><button type="submit" class="btn btn-success btn-sm">Ingresar</button>
+                    </td>    
+                </tr>    
+            </table>
+            </div>  
+            </nav>
+        </div>
+    </form>
+
 {% if error %}
-    <div>{{ error.message }}</div>
+    <div class="paa">
+    <div class="alert alert-danger" role="alert">{{ error.message }}</div>
+    </div>
 {% endif %}
- 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
- 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
- 
-    {#
-        añade lo siguiente si quieres redirigir al usuario a una
-        URL concreta después del login (explicado más adelante)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
- 
-    <button type="submit">login</button>
-</form>
+
+{% endblock %}
+</html>

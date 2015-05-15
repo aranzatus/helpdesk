@@ -7,7 +7,7 @@
     <table class="table table-bordered">
         <tr>
             <th>Codigo</th>
-            <th>Usuario</th>
+            <th>{{ knp_pagination_sortable(arSolicitudes, 'usuario', 'nombre') }}</th> 
             <th>Asunto</th>
             <th>Descripcion</th>
             <th>Fecha Solicitud</th>
@@ -30,6 +30,7 @@
             </tr>    
         
     </table>
+    {{ knp_pagination_render(arSolicitudes) }}
     {{ form_rest(form) }}
     {{ form_end(form) }}
     </div>

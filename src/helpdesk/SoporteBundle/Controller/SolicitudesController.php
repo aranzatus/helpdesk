@@ -9,6 +9,7 @@ class SolicitudesController extends Controller {
     public function listarAction() {
         $em = $this->getDoctrine()->getManager();
         $request = $this->getRequest(); // captura o recupera datos del formulario
+        $paginator  = $this->get('knp_paginator');
         $form = $this->createFormBuilder() //
             ->add('BtnEliminar', 'submit', array('label'  => 'Eliminar'))
             ->getForm(); 
@@ -25,7 +26,8 @@ class SolicitudesController extends Controller {
             }
         }
         $arSolicitudes = new \helpdesk\SoporteBundle\Entity\SopSolicitud();
-        $arSolicitudes = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->findAll();
+        $query = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->findAll();
+        $arSolicitudes = $paginator->paginate($query, $this->get('request')->query->get('page', 1),9);
 
         return $this->render('helpdeskSoporteBundle:Solicitudes:listar.html.twig', array(
                     'arSolicitudes' => $arSolicitudes,
@@ -86,7 +88,7 @@ class SolicitudesController extends Controller {
         $arSolucion = $em->getRepository('helpdeskSoporteBundle:SopSolicitud')->find($codigoSolicitudPk);
         $fe = new \DateTime('now');
         $form = $this->createFormBuilder()
-            ->add('TxtSolucion', 'textarea', array('data' => $arSolucion->getObservaciones()))
+            ->add('TxtSolucion', 'textarea', array('data' => $arSolucion->getObservaciones(), 'attr' => array('style' => 'width: 320px')))
             ->add('fechaSolucion','date',array('data' => $arSolucion->getFechaSolucion()))
             ->add('estado', 'choice', array('choices' => array('Activo' => 'Activo','Cerrado'=>'Cerrado')))
             ->add('save', 'submit', array('label' => 'Guardar'))    

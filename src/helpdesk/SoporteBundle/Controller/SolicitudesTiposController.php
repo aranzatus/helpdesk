@@ -4,6 +4,8 @@ namespace helpdesk\SoporteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use helpdesk\SoporteBundle\Form\Type\SolicitudTipoType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 class SolicitudesTiposController extends Controller {
 
     public function listarAction() {

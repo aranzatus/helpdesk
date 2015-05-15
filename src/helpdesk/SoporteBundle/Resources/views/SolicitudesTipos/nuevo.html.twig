@@ -3,12 +3,16 @@
 {% block body %}
     <div class="pa">
         {{ form_start(formSolicitudTipo, { 'attr': {'class': 'form-horizontal'} }) }}
-    {{ form_errors(formSolicitudTipo) }}
+        {{ form_errors(formSolicitudTipo) }}
     <table class="table table-bordered">
         
         <tr>
             <th>Tipo Solicitud</th>
-            <td>{{ form_widget(formSolicitudTipo.solicitudTipo, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+            <td>{{ form_widget(formSolicitudTipo.solicitudTipo, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}
+            {% if form_errors(formSolicitudTipo.solicitudTipo) %}
+                <div class="alert alert-danger" role="alert">{{ form_errors(formSolicitudTipo.solicitudTipo) }}</div>
+                {% endif %}
+            </td>
         </tr>
         <tr>
             

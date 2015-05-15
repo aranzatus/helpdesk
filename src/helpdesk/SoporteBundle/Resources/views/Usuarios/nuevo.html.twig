@@ -1,14 +1,19 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+    
     <div class="pa">
         {{ form_start(formUsuario, { 'attr': {'class': 'form-horizontal'} }) }}
-    {{ form_errors(formUsuario) }}
+        {{ form_errors(formUsuario) }}
     <table class="table table-bordered">
         
         <tr>
             <th>Usuario</th>
-            <td>{{ form_widget(formUsuario.usuario, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+            <td>{{ form_widget(formUsuario.usuario, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}
+                {% if form_errors(formUsuario.usuario) %}
+                <div class="alert alert-danger" role="alert">{{ form_errors(formUsuario.usuario) }}</div>
+                {% endif %}
+                </td>
         </tr>
         <tr>
             <th>Password</th>
@@ -20,7 +25,11 @@
         </tr>
         <tr>
             <th>Email</th>
-            <td>{{ form_widget(formUsuario.email, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}</td>
+            <td>{{ form_widget(formUsuario.email, { 'attr': {'class': 'btn btn-default btn-sm'}}) }}
+                {% if form_errors(formUsuario.email) %}
+                <div class="alert alert-danger" role="alert">{{ form_errors(formUsuario.email) }}</div>
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>Fecha Creación</th>

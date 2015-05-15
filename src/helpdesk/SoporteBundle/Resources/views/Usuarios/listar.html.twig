@@ -6,14 +6,13 @@
     {{ form_errors(form) }} 
     <table class="table table-bordered">
         <tr>
+            
             <th>Id</th>
-            <th>Usuario</th>
+            <th>{{ knp_pagination_sortable(arUsuarios, 'usuario', 'nombre') }}</th> 
             <th>Password</th>
             <th>Nombre</th>
             <th>Email</th>
             <th>Fecha Creación</th>
-            
-       
         </tr>
         
             {%for arUsuarios in arUsuarios %}
@@ -33,6 +32,7 @@
             </tr>    
         
     </table>
+    {{ knp_pagination_render(arUsuarios) }}
     {{ form_rest(form) }}
     {{ form_end(form) }}
     </div>

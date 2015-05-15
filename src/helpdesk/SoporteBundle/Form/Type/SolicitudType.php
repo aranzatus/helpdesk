@@ -11,9 +11,10 @@ class SolicitudType extends AbstractType
         $builder
             ->add('solitudTipoRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopSolicitudTipo','property' => 'solicitudTipo'))
             ->add('usuarioRel', 'entity', array('class' => 'helpdeskSoporteBundle:SopUsuario','property' => 'nombre'))
-            ->add('descripcion','textarea', array('required' => true))
+            ->add('descripcion','textarea', array('required' => true, 'attr' => array('style' => 'width: 320px')))
             ->add('fecha','date',array('data' => new \ DateTime('now')))
             ->add('observaciones','hidden')
+            ->add('descripcion','textarea', array('required' => true, 'attr' => array('style' => 'width: 320px')))    
             ->add('estado','hidden',array('data'  => 'Activo'))   
             ->add('save', 'submit', array('label'  => 'Guardar'));
        

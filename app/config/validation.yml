@@ -1,0 +1,10 @@
+# helpdesk\UserBundle\Entity\User:
+#    properties:
+#        gender:
+#            - Choice: { choices: [male, female], message: Choose a valid gender. }
+
+
+# helpdesk\UserBundle\Entity\User:
+#    getters:
+#        passwordLegal:
+#            - "True": { message: "The password cannot match your first name" }

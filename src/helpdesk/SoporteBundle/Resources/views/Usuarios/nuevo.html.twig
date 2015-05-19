@@ -1,7 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    
+        {% block javascripts %}
+            <script src="{{ asset('csspersonalizado/javascript/validacion.js') }}" type="text/javascript"></script>
+        {% endblock %}    
     <div class="pa">
         {{ form_start(formUsuario, { 'attr': {'class': 'form-horizontal'} }) }}
         {{ form_errors(formUsuario) }}
